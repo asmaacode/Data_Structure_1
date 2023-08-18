@@ -1,9 +1,6 @@
 #pragma once
-
 #include<iostream>
 using namespace std;
-
-
 template<typename T>class clsDblLinkedList
 {
 protected:
@@ -16,13 +13,14 @@ public:
 		Node* Prev;
 	};
 	Node* Head = NULL;
-	Node* Find(int Value) {
-		while (Head != NULL) {
-			if (Head->Value == Value)
+	Node* Find(T Value) {
+		Node* Current = Head;
+		while (Current != NULL) {
+			if (Current->Value == Value)
 			{
-				return Head;
+				return Current;
 			}
-			Head = Head->Next;
+			Current = Current->Next;
 		}
 		return NULL;
 	}
@@ -160,6 +158,21 @@ public:
 			if (Temp == NULL)
 				break;
 			Head = Head->Prev;
+		}
+	}
+	Node* GetNode(short Index) {
+		if (Index < 0 || Index > _Size - 1 || IsEmpty())
+			return NULL;
+
+		Node* Current = Head;
+		short Counter = 0, S = _Size-1;
+		while (Counter < _Size / 2) {
+			if (Index == Counter || Index ==S) {
+				return Current;
+			}
+			Current = Current->Next;
+			Counter++;
+			S--;
 		}
 	}
 
