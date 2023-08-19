@@ -165,9 +165,9 @@ public:
 			return NULL;
 
 		Node* Current = Head;
-		short Counter = 0, S = _Size-1;
+		short Counter = 0, S = _Size - 1;
 		while (Counter < _Size / 2) {
-			if (Index == Counter || Index ==S) {
+			if (Index == Counter || Index == S) {
 				return Current;
 			}
 			Current = Current->Next;
@@ -175,5 +175,27 @@ public:
 			S--;
 		}
 	}
-
+	T GetItem(short Index) {
+		Node* ItemNode = GetNode(Index);
+		if (ItemNode == NULL)
+			return NULL;
+		else
+			return ItemNode->Value;
+	}
+	bool UpdateItem(short Index, T NewValue) {
+		Node* ItemNode = GetNode(Index);
+		if (ItemNode != NULL) {
+			ItemNode->Value = NewValue;
+			return true;
+		}
+		return false;
+	}
+	bool InsertAfter(short Index, T NewValue) {
+		Node* ItemNode = GetNode(Index);
+		if (ItemNode != NULL) {
+			InsertAfter(ItemNode, NewValue);
+			return true;
+		}
+		return false;
+	}
 };
