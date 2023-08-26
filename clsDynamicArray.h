@@ -14,7 +14,7 @@ public:
 	bool IsEmpty() {
 		return (_Size == 0);
 	}
-	clsDynamicArray(int Size) {
+	clsDynamicArray(int Size=0) {
 		if (Size < 0)
 			Size = 0;
 		_Size = Size;
